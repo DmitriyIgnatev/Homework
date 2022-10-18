@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'task1.urls'
+ROOT_URLCONF = 'Task1.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'task1.wsgi.application'
+WSGI_APPLICATION = 'Task1.wsgi.application'
 
 
 # Database
@@ -89,23 +89,30 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+name = 'django.contrib.auth.password_validation.'
+name += 'UserAttributeSimilarityValidator'
+
+name1 = 'django.contrib.auth.password_validation.'
+name1 += 'MinimumLengthValidator'
+
+name2 = 'django.contrib.auth.password_validation.'
+name2 += 'CommonPasswordValidator'
+
+name3 = 'django.contrib.auth.password_validation.'
+name3 += 'NumericPasswordValidator'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.\
-            UserAttributeSimilarityValidator',
+        'NAME': name,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.\
-            MinimumLengthValidator',
+        'NAME': name1,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.\
-            CommonPasswordValidator',
+        'NAME': name2,
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.\
-            NumericPasswordValidator',
+        'NAME': name3,
     },
 ]
 
