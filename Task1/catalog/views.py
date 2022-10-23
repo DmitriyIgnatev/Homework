@@ -1,3 +1,9 @@
-# from django.shortcuts import render
+from django.shortcuts import HttpResponse
 
-# # Create your views here.
+
+def item_list(req):
+    return HttpResponse('Список элементов')
+
+
+def item_detail(req, pk):
+    return HttpResponse(f'Подробно элемент {pk}')
