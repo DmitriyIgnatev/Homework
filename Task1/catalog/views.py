@@ -6,4 +6,5 @@ def item_list(req):
 
 
 def item_detail(req, pk):
+    print(pk)
     return HttpResponse(f'Подробно элемент {pk}')
