@@ -17,4 +17,3 @@ class StaticURLTests(TestCase):
     def test_not_normal_number_endpoint(self):
         response = Client().get('/catalog/1.2')
         self.assertEqual(response.status_code, 404)
-
