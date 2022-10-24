@@ -13,3 +13,7 @@ class StaticURLTests(TestCase):
     def test_homepage(self):
         response = Client().get('')
         self.assertEqual(response.status_code, 200)
+    
+    def test_notfail_more(self):
+        response = Client().get('/home/something')
+        self.assertEqual(response.status_code, 404)
