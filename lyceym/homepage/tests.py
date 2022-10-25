@@ -7,7 +7,7 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_notfail(self):
-        response = Client().get('/home/123')
+        response = Client().get('/home/1w3')
         self.assertEqual(response.status_code, 404)
 
     def test_homepage(self):
