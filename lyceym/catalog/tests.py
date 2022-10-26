@@ -6,6 +6,10 @@ class StaticURLTests(TestCase):
         response = Client().get('/catalog/12/')
         self.assertEqual(response.status_code, 200)
 
+    def test_minus_endpoint(self):
+        response = Client().get('/catalog/-5/')
+        self.assertEqual(response.status_code, 404)
+
     def test_str_endpoint(self):
         response = Client().get('/catalog/fghgf/')
         self.assertEqual(response.status_code, 404)
@@ -24,10 +28,6 @@ class StaticURLTests(TestCase):
 
     def test_catalog_new_endpoint(self):
         response = Client().get('/catalog/0/')
-        self.assertEqual(response.status_code, 404)
-
-    def test_catalog_new_minus_endpoint(self):
-        response = Client().get('/catalog/-145/')
         self.assertEqual(response.status_code, 404)
 
     def test_catalog_new_numandcup_endpoint(self):
