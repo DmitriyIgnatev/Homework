@@ -27,7 +27,7 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_catalog_new_minus_endpoint(self):
-        response = Client().get('/catalog/-1')
+        response = Client().get('/catalog/-145/')
         self.assertEqual(response.status_code, 404)
 
     def test_catalog_new_numandcup_endpoint(self):
