@@ -101,3 +101,7 @@ class StaticURLTests(TestCase):
     def test_new_test_20(self):
         response = Client().get('/catalog/-1.2smth1234')
         self.assertEqual(response.status_code, 404)
+
+    def test_new_test_21(self):
+        response = Client().get('/catalog/-123smth1234')
+        self.assertEqual(response.status_code, 404)
