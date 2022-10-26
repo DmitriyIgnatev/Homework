@@ -22,82 +22,82 @@ class StaticURLTests(TestCase):
         response = Client().get('/catalog/')
         self.assertEqual(response.status_code, 200)
 
-    def new_test_1(self):
+    def test_new_test_1_endpoint(self):
         response = Client().get('/catalog/0')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_2(self):
+    def test_new_test_2_endpoint(self):
         response = Client().get('/catalog/-1')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_3(self):
+    def test_new_test_3_endpoint(self):
         response = Client().get('/catalog/-1smth')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_4(self):
+    def test_new_test_4_endpoint(self):
         response = Client().get('/catalog/0d')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_5(self):
+    def test_new_test_5_endpoint(self):
         response = Client().get('/catalog/smth0')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_6(self):
+    def test_new_test_6(self):
         response = Client().get('/catalog/smth-1')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_7(self):
+    def test_new_test_7(self):
         response = Client().get('/catalog/1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_8(self):
+    def test_new_test_8(self):
         response = Client().get('/catalog/1.2smth')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_9(self):
+    def test_new_test_9(self):
         response = Client().get('/catalog/smth1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_10(self):
+    def test_new_test_10(self):
         response = Client().get('/catalog/-1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_11(self):
+    def test_new_test_11(self):
         response = Client().get('/catalog/smth-1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_12(self):
+    def test_new_test_12(self):
         response = Client().get('/catalog/-1.2smth')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_13(self):
+    def test_new_test_13(self):
         response = Client().get('/catalog/12/2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_14(self):
+    def test_new_test_14(self):
         response = Client().get('/catalog/12smth12')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_15(self):
+    def test_new_test_15(self):
         response = Client().get('/catalog/-12smth-12')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_16(self):
+    def test_new_test_16(self):
         response = Client().get('/catalog/-1.2smth-1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_17(self):
+    def test_new_test_17(self):
         response = Client().get('/catalog/1.2smth1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_18(self):
+    def test_new_test_18(self):
         response = Client().get('/catalog/1.2smth-1.2')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_19(self):
+    def test_new_test_19(self):
         response = Client().get('/catalog/-123smth124')
         self.assertEqual(response.status_code, 404)
 
-    def new_test_20(self):
+    def test_new_test_20(self):
         response = Client().get('/catalog/-1.2smth1234')
         self.assertEqual(response.status_code, 404)
