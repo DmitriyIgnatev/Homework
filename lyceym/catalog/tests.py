@@ -58,10 +58,6 @@ class StaticURLTests(TestCase):
         response = Client().get('/catalog/smth1.2/')
         self.assertEqual(response.status_code, 404)
 
-    def test_new_test_10(self):
-        response = Client().get('/catalog/-1.2/')
-        self.assertEqual(response.status_code, 404)
-
     def test_new_test_11(self):
         response = Client().get('/catalog/smth-1.2/')
         self.assertEqual(response.status_code, 404)
