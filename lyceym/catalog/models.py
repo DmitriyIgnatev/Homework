@@ -25,7 +25,7 @@ class Catalog_tag(Core):
     class Meta:
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
-    
+
     def __str__(self):
         return f"имя: {self.name}, ис_паблишет: {self.is_published}"
 

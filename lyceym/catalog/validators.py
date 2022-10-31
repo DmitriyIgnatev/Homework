@@ -15,8 +15,9 @@ def validate_number(value):
 
 
 def validate_word(value):
-    # if [',', '!', '&', '?', '/', '.', ';', ':'] in value:
-    #     raise ValueError(
-    #         'Можно использовать только цифры,
-    #  буквы латиницы и символы - и _')
+    text = 'Можно использовать только цифры, буквы латиницы и символы - и _'
+    sets = set([',', '!', '&', '?', '/', '.', ';', ':'])
+    for i in value.split():
+        if set(list(i)) & sets:
+            raise ValueError(text)
     return value
