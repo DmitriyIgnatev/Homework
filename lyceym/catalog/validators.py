@@ -1,5 +1,7 @@
 def validate_amazing(value):
-    if ['превосходно', 'роскошно'] not in value:
+    value = set(value.lower().split())
+    the_same = set(('превосходно', 'роскошно')) & value
+    if not the_same:
         raise ValueError(
             'Обязательно нужно использовать строки превосходно или роскошно'
             )
@@ -13,7 +15,8 @@ def validate_number(value):
 
 
 def validate_word(value):
-    if [',', '!', '&', '?', '/', '.', ';', ':'] in value:
-        raise ValueError(
-            'Можно исрользовать только цифры, буквы латиницы и символы - и _')
+    # if [',', '!', '&', '?', '/', '.', ';', ':'] in value:
+    #     raise ValueError(
+    #         'Можно использовать только цифры,
+    #  буквы латиницы и символы - и _')
     return value

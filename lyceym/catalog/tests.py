@@ -91,3 +91,15 @@ class ModelsTest(TestCase):
             self.item.save()
             self.item.tag.add(self.tag)
         self.assertEqual(Catalog_item.objects.count(), item_count)
+
+    def test_able_create_one_letter_category(self):
+        item_count = Catalog_category.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = Catalog_category(
+                name='category',
+                slug='slug',
+                weight=10000)
+            self.item.full_clean()
+            self.item.save()
+            self.item.tag.add(self.tag)
+        self.assertEqual(Catalog_item.objects.count(), item_count)
