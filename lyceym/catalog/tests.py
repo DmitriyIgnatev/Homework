@@ -1,4 +1,6 @@
 from django.test import Client, TestCase
+from .models import Catalog_item, Catalog_tag, Catalog_category
+from django.core.exceptions import ValidationError
 
 
 class StaticURLTests(TestCase):
@@ -53,3 +55,39 @@ class StaticURLTests(TestCase):
     def test_catalog_new_r_endpoint(self):
         response = Client().get('/catalog/-1.2ggg/')
         self.assertEqual(response.status_code, 404)
+
+
+class ModelsTest(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Catalog_category.objects.create(
+            name='Тест',
+            slug='test-category-test')
+
+        cls.tag = Catalog_tag.objects.create(
+            name='Test',
+            slug='tag-category-test')
+
+    def test_unable_create_one_letter(self):
+        item_count = Catalog_item.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = Catalog_item(
+                name='catalog', category=self.category,
+                text='test text')
+            self.item.full_clean()
+            self.item.save()
+            self.item.tag.add(self.tag)
+        self.assertEqual(Catalog_item.objects.count(), item_count)
+
+    def test_able_create_one_letter(self):
+        item_count = Catalog_item.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = Catalog_item(
+                name='catalog',
+                category=self.category,
+                text='test text превосходно')
+            self.item.full_clean()
+            self.item.save()
+            self.item.tag.add(self.tag)
+        self.assertEqual(Catalog_item.objects.count(), item_count)
