@@ -1,6 +1,5 @@
 from django.test import Client, TestCase
 from .models import Catalog_item, Catalog_tag, Catalog_category
-from django.core.exceptions import ValidationError
 
 
 class StaticURLTests(TestCase):
@@ -71,35 +70,41 @@ class ModelsTest(TestCase):
 
     def test_unable_create_one_letter(self):
         item_count = Catalog_item.objects.count()
-        with self.assertRaises(ValidationError):
-            self.item = Catalog_item(
-                name='catalog', category=self.category,
-                text='test text')
-            self.item.full_clean()
-            self.item.save()
-            self.item.tag.add(self.tag)
-        self.assertEqual(Catalog_item.objects.count(), item_count)
+        self.item = Catalog_item(
+            name='catalog', category=self.category,
+            text='test tex роскошно')
+        self.item.full_clean()
+        self.item.save()
+        self.item.tag.add(self.tag)
+        self.assertEqual(Catalog_item.objects.count(), item_count + 1)
 
     def test_able_create_one_letter(self):
         item_count = Catalog_item.objects.count()
-        with self.assertRaises(ValidationError):
-            self.item = Catalog_item(
-                name='catalog',
-                category=self.category,
-                text='test text превосходно')
-            self.item.full_clean()
-            self.item.save()
-            self.item.tag.add(self.tag)
-        self.assertEqual(Catalog_item.objects.count(), item_count)
+        self.item = Catalog_item(
+            name='catalog',
+            category=self.category,
+            text='test text превосходно',
+        )
+        self.item.full_clean()
+        self.item.save()
+        self.assertEqual(Catalog_item.objects.count(), item_count + 1)
 
     def test_able_create_one_letter_category(self):
         item_count = Catalog_category.objects.count()
-        with self.assertRaises(ValidationError):
-            self.item = Catalog_category(
-                name='category',
-                slug='slug',
-                weight=10000)
-            self.item.full_clean()
-            self.item.save()
-            self.item.tag.add(self.tag)
-        self.assertEqual(Catalog_item.objects.count(), item_count)
+        self.item = Catalog_category(
+            name='category',
+            slug='slug',
+            weight=10000)
+        self.item.full_clean()
+        self.item.save()
+        self.assertEqual(Catalog_category.objects.count(), item_count + 1)
+
+    def test_able_create_tag(self):
+        item_count = Catalog_tag.objects.count()
+        self.item = Catalog_tag(
+            name='молоко',
+            slug='slug',
+            )
+        self.item.full_clean()
+        self.item.save()
+        self.assertEqual(Catalog_tag.objects.count(), item_count + 1)
