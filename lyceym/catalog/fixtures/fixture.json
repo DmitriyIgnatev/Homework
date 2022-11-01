@@ -1,0 +1,201 @@
+[
+    {
+        "model": "catalog.item",
+        "pk": 1,
+        "fields": {
+            "is_published": true,
+            "name": "Суп борщ",
+            "text": "Суп бощь, холодного приготовления. Роскошно",
+            "category": 6,
+            "tag": [
+                12,
+                13
+            ]
+        }
+    },
+    {
+        "model": "catalog.item",
+        "pk": 2,
+        "fields": {
+            "is_published": true,
+            "name": "Молочная колбаса",
+            "text": "90% колбаса из маленьких теленков. Роскошно",
+            "category": 3,
+            "tag": [
+                4,
+                5
+            ]
+        }
+    },
+    {
+        "model": "catalog.item",
+        "pk": 3,
+        "fields": {
+            "is_published": true,
+            "name": "Рибай",
+            "text": "100% стейк из натуральной говядины. Роскошно",
+            "category": 3,
+            "tag": [
+                6
+            ]
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 2,
+        "fields": {
+            "is_published": true,
+            "name": "Молочные продукты",
+            "slug": "Milks"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 3,
+        "fields": {
+            "is_published": true,
+            "name": "Кисло-молочные",
+            "slug": "Sour-milk"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 4,
+        "fields": {
+            "is_published": true,
+            "name": "Мясо",
+            "slug": "Meat"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 5,
+        "fields": {
+            "is_published": true,
+            "name": "Колбасы",
+            "slug": "Sausages"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 6,
+        "fields": {
+            "is_published": true,
+            "name": "Премиальные стейки",
+            "slug": "PremiumSteaks"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 7,
+        "fields": {
+            "is_published": true,
+            "name": "Каши",
+            "slug": "Porridge"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 8,
+        "fields": {
+            "is_published": true,
+            "name": "Крупы",
+            "slug": "Cereal"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 9,
+        "fields": {
+            "is_published": true,
+            "name": "Батон",
+            "slug": "Bread"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 10,
+        "fields": {
+            "is_published": true,
+            "name": "Булочки",
+            "slug": "Buns"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 11,
+        "fields": {
+            "is_published": true,
+            "name": "Горячие закуски",
+            "slug": "HotSnacks"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 12,
+        "fields": {
+            "is_published": true,
+            "name": "Холодные закуски",
+            "slug": "ColdSnacks"
+        }
+    },
+    {
+        "model": "catalog.tag",
+        "pk": 13,
+        "fields": {
+            "is_published": true,
+            "name": "Супы",
+            "slug": "Soup"
+        }
+    },
+    {
+        "model": "catalog.category",
+        "pk": 2,
+        "fields": {
+            "is_published": true,
+            "name": "Молочные продукты",
+            "slug": "MilkProducts",
+            "weight": 100
+        }
+    },
+    {
+        "model": "catalog.category",
+        "pk": 3,
+        "fields": {
+            "is_published": true,
+            "name": "Мясные изделия",
+            "slug": "MeatDish",
+            "weight": 100
+        }
+    },
+    {
+        "model": "catalog.category",
+        "pk": 4,
+        "fields": {
+            "is_published": true,
+            "name": "Крупы",
+            "slug": "Cereal",
+            "weight": 100
+        }
+    },
+    {
+        "model": "catalog.category",
+        "pk": 5,
+        "fields": {
+            "is_published": true,
+            "name": "Хлебные изделия",
+            "slug": "BreadsDish",
+            "weight": 100
+        }
+    },
+    {
+        "model": "catalog.category",
+        "pk": 6,
+        "fields": {
+            "is_published": true,
+            "name": "Готовая Еда",
+            "slug": "CookedFood",
+            "weight": 100
+        }
+    }
+]
