@@ -1,14 +1,15 @@
 from django.core.exceptions import ValidationError
 
 
-def validate_amazing(value):
-    value = set(value.lower().split())
-    the_same = set(('превосходно', 'роскошно')) & value
-    if not the_same:
-        raise ValidationError(
-            'Обязательно нужно использовать строки превосходно или роскошно'
-            )
-    return value
+class Validate_amazing:
+    def __init__(self, *base):
+        self.base = set(base)
+
+    def __call__(self, value):
+        if not set(value.lower().split()) & self.base:
+            message = f'Должны быть слова: {", ".join(list(self.base))}'
+            raise ValidationError(message)
+        return value
 
 
 def validate_number(value):

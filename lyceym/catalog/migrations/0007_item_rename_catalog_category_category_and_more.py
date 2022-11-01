@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('is_published', models.BooleanField(default=True)),
                 ('name', models.CharField(max_length=150)),
-                ('text', models.TextField(validators=[catalog.validators.validate_amazing])),
+                ('text', models.TextField(validators=[catalog.validators.Validate_amazing])),
             ],
             options={
                 'verbose_name': 'товар',

@@ -1,11 +1,11 @@
 from django.db import models
-from .validators import validate_amazing, validate_word, validate_number
+from .validators import Validate_amazing, validate_word, validate_number
 from core.models import Core
 
 
 class Item(Core):
     text = models.TextField(
-        validators=[validate_amazing, ],
+        validators=[Validate_amazing('превосходно', 'куку'), ],
         verbose_name='текст')
     category = models.ForeignKey(
         'Category',

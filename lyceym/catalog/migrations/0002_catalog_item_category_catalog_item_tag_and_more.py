@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='catalog_item',
             name='text',
-            field=models.TextField(validators=[catalog.validators.validate_amazing]),
+            field=models.TextField(validators=[catalog.validators.Validate_amazing]),
         ),
         migrations.AlterField(
             model_name='catalog_tag',
