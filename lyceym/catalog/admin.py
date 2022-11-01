@@ -1,7 +1,20 @@
 from django.contrib import admin
-from .models import Catalog_item, Catalog_tag, Catalog_category
+from .models import Item, Tag, Category
 
 
-admin.site.register(Catalog_item)
-admin.site.register(Catalog_tag)
-admin.site.register(Catalog_category)
+@admin.register(Item)
+class ItemAdmin(admin.ModelAdmin):
+    list_display = ["name", "is_published"]
+    list_editable = ["is_published"]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ["name", "is_published"]
+    list_editable = ["is_published"]
+
+
+@admin.register(Category)
+class CatalogAdmin(admin.ModelAdmin):
+    list_display = ["name", "is_published"]
+    list_editable = ["is_published"]

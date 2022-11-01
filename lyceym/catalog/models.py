@@ -3,43 +3,53 @@ from .validators import validate_amazing, validate_word, validate_number
 from core.models import Core
 
 
-class Catalog_item(Core):
-    text = models.TextField(validators=[validate_amazing, ])
-    category = models.ForeignKey('Catalog_category', on_delete=models.CASCADE)
-    tag = models.ManyToManyField("Catalog_tag", verbose_name="Теги")
+class Item(Core):
+    text = models.TextField(
+        validators=[validate_amazing, ],
+        verbose_name='текст')
+    category = models.ForeignKey(
+        'Category',
+        on_delete=models.CASCADE,
+        verbose_name='категории')
+    tag = models.ManyToManyField('Tag', verbose_name='теги')
 
     class Meta:
-        verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
+        verbose_name = 'товар'
+        verbose_name_plural = 'товары'
 
     def __str__(self) -> str:
-        return f"{{'Имя': {self.name}, 'публикация': {self.is_published}}}"
+        return f'{self.name}'
 
 
-class Catalog_tag(Core):
+class Tag(Core):
     slug = models.SlugField(
         max_length=200,
         validators=[validate_word],
-        unique=True)
+        unique=True,
+        verbose_name='слэг')
 
     class Meta:
-        verbose_name = 'Тэг'
-        verbose_name_plural = 'Тэги'
+        verbose_name = 'тэг'
+        verbose_name_plural = 'тэги'
 
     def __str__(self):
-        return f"имя: {self.name}, ис_паблишет: {self.is_published}"
+        return self.name
 
 
-class Catalog_category(Core):
+class Category(Core):
     slug = models.SlugField(
         max_length=200,
         validators=[validate_word],
-        unique=True)
-    weight = models.IntegerField(default=100, validators=[validate_number])
+        unique=True,
+        verbose_name='слэг')
+    weight = models.IntegerField(
+        default=100,
+        validators=[validate_number],
+        verbose_name='вес')
 
     class Meta:
-        verbose_name = 'Категория'
-        verbose_name_plural = 'Категории'
+        verbose_name = 'категория'
+        verbose_name_plural = 'категории'
 
     def __str__(self):
-        return f"имя: {self.name}, ис_паблишет: {self.is_published}"
+        return f'{self.name}'

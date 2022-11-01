@@ -1,5 +1,5 @@
 from django.test import Client, TestCase
-from .models import Catalog_item, Catalog_tag, Catalog_category
+from .models import Item, Tag, Category
 from django.core.exceptions import ValidationError
 
 
@@ -61,57 +61,114 @@ class ModelsTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.category = Catalog_category.objects.create(
+        cls.category = Category.objects.create(
             name='Тест',
             slug='test-category-test')
 
-        cls.tag = Catalog_tag.objects.create(
+        cls.tag = Tag.objects.create(
             name='Test',
             slug='tag-category-test')
 
-    def test_unable_create_one_letter(self):
-        'ПОСИТИВНЫЙ ТЕСТ ТЕСТ'
-        item_count = Catalog_item.objects.count()
-        self.item = Catalog_item(
+    def test_able_create_one_item(self):
+        item_count = Item.objects.count()
+        self.item = Item(
             name='catalog', category=self.category,
             text='test tex роскошно')
         self.item.full_clean()
         self.item.save()
         self.item.tag.add(self.tag)
-        self.assertEqual(Catalog_item.objects.count(), item_count + 1)
+        self.assertEqual(Item.objects.count(), item_count + 1)
 
-    def test_able_create_one_letter(self):
-        'НЕГАТИВНЫЙ ТЕСТ'
-        item_count = Catalog_item.objects.count()
-        with self.assertRaises(ValueError):
-            self.item = Catalog_item(
+
+class ModelsTestTwo(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            name='Another_test',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Another_test',
+            slug='tag-category-test')
+
+    def test_unable_create_one_item(self):
+        item_count = Item.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = Item(
                 name='catalog',
                 category=self.category,
-                text='test text',
-            )
+                text='test text')
             self.item.full_clean()
             self.item.save()
-        self.assertEqual(Catalog_item.objects.count(), item_count)
+        self.assertEqual(Item.objects.count(), item_count)
 
-    def test_able_create_one_letter_category(self):
-        item_count = Catalog_category.objects.count()
-        'НЕГАТИВНЫЙ ТЕСТ'
+
+class ModelsTestThree(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            name='Тест',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Test',
+            slug='tag-category-test')
+
+    def test_unable_create_one_category(self):
+        item_count = Category.objects.count()
         with self.assertRaises(ValidationError):
-            self.item = Catalog_category(
+            self.item = Category(
                 name='category',
                 slug='slug Error',
                 weight=10000)
             self.item.full_clean()
             self.item.save()
-        self.assertEqual(Catalog_category.objects.count(), item_count)
+        self.assertEqual(Category.objects.count(), item_count)
 
-    def test_able_create_tag(self):
-        item_count = Catalog_tag.objects.count()
-        'ПОСИТИВНЫЙ ТЕСТ ТЕСТ'
-        self.item = Catalog_tag(
-            name='молоко',
-            slug='slug',
-            )
+
+class ModelsTestFour(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            name='Тест',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Test',
+            slug='tag-category-test')
+
+    def test_able_create_one_category(self):
+        item_count = Category.objects.count()
+        self.item = Category(
+            name='category',
+            slug='some-slug',
+            weight=10000)
         self.item.full_clean()
         self.item.save()
-        self.assertEqual(Catalog_tag.objects.count(), item_count + 1)
+        self.assertEqual(Category.objects.count(), item_count + 1)
+
+
+class ModelsTestFive(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.category = Category.objects.create(
+            name='Тест',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Test',
+            slug='tag-category-test')
+
+    def test_unable_create_tag(self):
+        item_count = Tag.objects.count()
+        with self.assertRaises(ValidationError):
+            self.item = Tag(
+                name='молоко',
+                slug='slug Error')
+            self.item.full_clean()
+            self.item.save()
+        self.assertEqual(Tag.objects.count(), item_count)
