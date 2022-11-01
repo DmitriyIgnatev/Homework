@@ -60,7 +60,7 @@ class StaticURLTests(TestCase):
 class ModelsTest(TestCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClassOne()
+        super().setUpClass()
         cls.category = Category.objects.create(
             name='Молочные продукты',
             slug='Milk')
@@ -71,37 +71,22 @@ class ModelsTest(TestCase):
 
     def test_able_create_one_item(self):
         item_count = Item.objects.count()
+        category = Category.objects.create(
+            name='Тестовая категория',
+            slug='slug',
+            weight=16)
         self.item = Item(
-            name='catalog', category=self.category,
-            text='test tex роскошно')
+            name='catalog',
+            category=category,
+            text='test tex роскошно',
+            id=6)
         self.item.full_clean()
         self.item.save()
         self.item.tag.add(self.tag)
         self.assertEqual(Item.objects.count(), item_count + 1)
 
-
-class ModelsTestTwo(TestCase):
-    @classmethod
-    def setUpClassTwo(cls):
-        super().setUpClassTwo()
-        cls.category = Category.objects.create(
-            name='Another_test',
-            slug='test-category-test')
-
-        cls.tag = Tag.objects.create(
-            name='Another_test',
-            slug='tag-category-test')
-
-    def test_unable_create_one_item(self):
-        item_count = Item.objects.count()
-        with self.assertRaises(ValidationError):
-            self.item = Item(
-                name='catalog',
-                category=self.category,
-                text='test text')
-            self.item.full_clean()
-            self.item.save()
-        self.assertEqual(Item.objects.count(), item_count)
+    def tearDown(self):
+        self.item.delete()
 
 
 class ModelsTestThree(TestCase):
@@ -122,10 +107,14 @@ class ModelsTestThree(TestCase):
             self.item = Category(
                 name='category',
                 slug='slug Error',
-                weight=10000)
+                weight=10000,
+                id=3)
             self.item.full_clean()
             self.item.save()
         self.assertEqual(Category.objects.count(), item_count)
+
+    def tearDown(self):
+        self.item.delete()
 
 
 class ModelsTestFour(TestCase):
@@ -145,10 +134,43 @@ class ModelsTestFour(TestCase):
         self.item = Category(
             name='category',
             slug='some-slug',
-            weight=10000)
+            weight=10000,
+            id=2)
         self.item.full_clean()
         self.item.save()
         self.assertEqual(Category.objects.count(), item_count + 1)
+
+    def tearDown(self):
+        self.item.delete()
+
+
+class ModelsTestTwo(TestCase):
+    @classmethod
+    def setUpClassTwo(cls):
+        super().setUpClassTwo()
+        cls.category = Category.objects.create(
+            name='Another_test',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Another_test',
+            slug='tag-category-test')
+
+    def test_unable_create_one_item(self):
+        item_count = Item.objects.count()
+        category = Category.objects.create(
+            name='Тестовая категория',
+            slug='slug',
+            weight=16)
+        with self.assertRaises(ValidationError):
+            self.item = Item(
+                name='catalog',
+                category=category,
+                text='test text',
+                id=4)
+            self.item.full_clean()
+            self.item.save()
+        self.assertEqual(Item.objects.count(), item_count)
 
 
 class ModelsTestFive(TestCase):
@@ -168,7 +190,11 @@ class ModelsTestFive(TestCase):
         with self.assertRaises(ValidationError):
             self.item = Tag(
                 name='молоко',
-                slug='slug Error')
+                slug='slug Error',
+                id=1)
             self.item.full_clean()
             self.item.save()
         self.assertEqual(Tag.objects.count(), item_count)
+
+    def tearDown(self):
+        self.item.delete()
