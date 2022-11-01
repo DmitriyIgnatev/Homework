@@ -9,7 +9,7 @@ class Validate_amazing:
         flag = True
         for i in value.split():
             for j in self.base:
-                if j in i:
+                if j.lower() in i.lower():
                     flag = False
                     break
         if flag:
