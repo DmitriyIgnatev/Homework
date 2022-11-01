@@ -5,7 +5,7 @@ from core.models import Core
 
 class Item(Core):
     text = models.TextField(
-        validators=[Validate_amazing('превосходно', 'куку'), ],
+        validators=[Validate_amazing('превосходно', 'роскошно'), ],
         verbose_name='текст')
     category = models.ForeignKey(
         'Category',
