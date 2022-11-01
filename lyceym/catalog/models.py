@@ -18,7 +18,7 @@ class Item(Core):
         verbose_name_plural = 'товары'
 
     def __str__(self) -> str:
-        return f'{self.name}'
+        return self.name
 
 
 class Tag(Core):
@@ -52,4 +52,4 @@ class Category(Core):
         verbose_name_plural = 'категории'
 
     def __str__(self):
-        return f'{self.name}'
+        return self.name

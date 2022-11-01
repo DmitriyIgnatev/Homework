@@ -60,14 +60,14 @@ class StaticURLTests(TestCase):
 class ModelsTest(TestCase):
     @classmethod
     def setUpClass(cls):
-        super().setUpClass()
+        super().setUpClassOne()
         cls.category = Category.objects.create(
-            name='Тест',
-            slug='test-category-test')
+            name='Молочные продукты',
+            slug='Milk')
 
         cls.tag = Tag.objects.create(
-            name='Test',
-            slug='tag-category-test')
+            name='Молоко',
+            slug='MilksProdukt')
 
     def test_able_create_one_item(self):
         item_count = Item.objects.count()
@@ -82,8 +82,8 @@ class ModelsTest(TestCase):
 
 class ModelsTestTwo(TestCase):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClassTwo(cls):
+        super().setUpClassTwo()
         cls.category = Category.objects.create(
             name='Another_test',
             slug='test-category-test')
@@ -106,8 +106,8 @@ class ModelsTestTwo(TestCase):
 
 class ModelsTestThree(TestCase):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClassThree(cls):
+        super().setUpClassThree()
         cls.category = Category.objects.create(
             name='Тест',
             slug='test-category-test')
@@ -130,8 +130,8 @@ class ModelsTestThree(TestCase):
 
 class ModelsTestFour(TestCase):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClassFour(cls):
+        super().setUpClassFour()
         cls.category = Category.objects.create(
             name='Тест',
             slug='test-category-test')
@@ -153,8 +153,8 @@ class ModelsTestFour(TestCase):
 
 class ModelsTestFive(TestCase):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
+    def setUpClassFive(cls):
+        super().setUpClassFive()
         cls.category = Category.objects.create(
             name='Тест',
             slug='test-category-test')
