@@ -180,7 +180,7 @@ class ModelsTestTwo(TestCase):
             self.item.full_clean()
             self.item.save()
         self.assertEqual(Item.objects.count(), item_count)
-    
+
     def tearDown(self):
         super().tearDown()
         Category.objects.all().delete()
