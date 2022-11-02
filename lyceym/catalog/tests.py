@@ -86,8 +86,10 @@ class ModelsTest(TestCase):
         self.assertEqual(Item.objects.count(), item_count + 1)
 
     def tearDown(self):
-        self.item.delete()
-        self.item.save()
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
 
 
 class ModelsTestThree(TestCase):
@@ -115,8 +117,10 @@ class ModelsTestThree(TestCase):
         self.assertEqual(Category.objects.count(), item_count)
 
     def tearDown(self):
-        self.item.delete()
-        self.item.save()
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
 
 
 class ModelsTestFour(TestCase):
@@ -143,8 +147,10 @@ class ModelsTestFour(TestCase):
         self.assertEqual(Category.objects.count(), item_count + 1)
 
     def tearDown(self):
-        self.item.delete()
-        self.item.save()
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
 
 
 class ModelsTestTwo(TestCase):
@@ -174,6 +180,12 @@ class ModelsTestTwo(TestCase):
             self.item.full_clean()
             self.item.save()
         self.assertEqual(Item.objects.count(), item_count)
+    
+    def tearDown(self):
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
 
 
 class ModelsTestFive(TestCase):
@@ -200,5 +212,7 @@ class ModelsTestFive(TestCase):
         self.assertEqual(Tag.objects.count(), item_count)
 
     def tearDown(self):
-        self.item.delete()
-        self.item.save()
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
