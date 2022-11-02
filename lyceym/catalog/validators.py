@@ -7,9 +7,10 @@ class Validate_amazing:
 
     def __call__(self, value):
         flag_for_validation = True
+        signs = r'!\"№;%:?*()_+=-?><,:"/'
         for word in value.split():
             for important_word in self.base:
-                if important_word.lower() == word.lower().strip('!?.,/%$#@%'):
+                if important_word.lower() == word.lower().strip(signs + "'"):
                     flag_for_validation = False
                     break
         if flag_for_validation:
@@ -29,6 +30,6 @@ def validate_word(value):
     letters = [',', '!', '&', '?', '/', '.', ';', ':']
     for word in value.split():
         for letter in letters:
-            if word.count(letter) != 0:
+            if letter in word:
                 raise ValidationError(text)
     return value
