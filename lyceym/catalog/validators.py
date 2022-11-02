@@ -6,13 +6,13 @@ class Validate_amazing:
         self.base = base
 
     def __call__(self, value):
-        flag = True
-        for i in value.split():
-            for j in self.base:
-                if j.lower() in i.lower():
-                    flag = False
+        flag_for_validation = True
+        for word in value.split():
+            for important_word in self.base:
+                if important_word.lower() == word.lower().strip('!?.,/%$#@%'):
+                    flag_for_validation = False
                     break
-        if flag:
+        if flag_for_validation:
             message = f'Должны быть слова: {", ".join(list(self.base))}'
             raise ValidationError(message)
         return value
@@ -26,8 +26,9 @@ def validate_number(value):
 
 def validate_word(value):
     text = 'Можно использовать только цифры, буквы латиницы и символы - и _'
-    sets = {',', '!', '&', '?', '/', '.', ';', ':'}
-    for i in value.split():
-        if set(i) & sets:
-            raise ValidationError(text)
+    letters = [',', '!', '&', '?', '/', '.', ';', ':']
+    for word in value.split():
+        for letter in letters:
+            if word.count(letter) != 0:
+                raise ValidationError(text)
     return value

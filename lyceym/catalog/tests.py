@@ -87,6 +87,7 @@ class ModelsTest(TestCase):
 
     def tearDown(self):
         self.item.delete()
+        self.item.save()
 
 
 class ModelsTestThree(TestCase):
@@ -115,6 +116,7 @@ class ModelsTestThree(TestCase):
 
     def tearDown(self):
         self.item.delete()
+        self.item.save()
 
 
 class ModelsTestFour(TestCase):
@@ -142,6 +144,7 @@ class ModelsTestFour(TestCase):
 
     def tearDown(self):
         self.item.delete()
+        self.item.save()
 
 
 class ModelsTestTwo(TestCase):
@@ -198,3 +201,4 @@ class ModelsTestFive(TestCase):
 
     def tearDown(self):
         self.item.delete()
+        self.item.save()
