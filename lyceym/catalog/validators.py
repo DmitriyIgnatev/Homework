@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 import re
+from django.utils.deconstruct import deconstructible
 
 
+@deconstructible
 class Validate_amazing:
     def __init__(self, *base):
         self.base = base
