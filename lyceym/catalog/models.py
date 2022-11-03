@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import Validate_amazing, validate_word, validate_number
+from .validators import Validate_amazing, validate_number
 from core.models import Core
 
 
@@ -24,7 +24,6 @@ class Item(Core):
 class Tag(Core):
     slug = models.SlugField(
         max_length=200,
-        validators=[validate_word],
         unique=True,
         verbose_name='слэг')
 
@@ -39,7 +38,6 @@ class Tag(Core):
 class Category(Core):
     slug = models.SlugField(
         max_length=200,
-        validators=[validate_word],
         unique=True,
         verbose_name='слэг')
     weight = models.IntegerField(

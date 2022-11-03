@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+import re
 
 
 class Validate_amazing:
@@ -7,12 +8,16 @@ class Validate_amazing:
 
     def __call__(self, value):
         flag_for_validation = True
-        signs = r'!\"№;%:?*()_+=-?><,:"/'
         for word in value.split():
             for important_word in self.base:
-                if important_word.lower() == word.lower().strip(signs + "'"):
-                    flag_for_validation = False
-                    break
+                word = word.lower()
+                text = re.findall('[a-zа-яё]+', word, flags=re.IGNORECASE)
+                try:
+                    if important_word.lower() == text[0]:
+                        flag_for_validation = False
+                        break
+                except IndexError:
+                    continue
         if flag_for_validation:
             message = f'Должны быть слова: {", ".join(list(self.base))}'
             raise ValidationError(message)
@@ -22,14 +27,4 @@ class Validate_amazing:
 def validate_number(value):
     if 0 > value > 32767:
         raise ValidationError('Число должно быть больше нуля, меньше 32767')
-    return value
-
-
-def validate_word(value):
-    text = 'Можно использовать только цифры, буквы латиницы и символы - и _'
-    letters = [',', '!', '&', '?', '/', '.', ';', ':']
-    for word in value.split():
-        for letter in letters:
-            if letter in word:
-                raise ValidationError(text)
     return value
