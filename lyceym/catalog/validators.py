@@ -6,22 +6,14 @@ from django.utils.deconstruct import deconstructible
 @deconstructible
 class Validate_amazing:
     def __init__(self, *base):
-        self.base = base
+        self.base = '|'.join(list(base))
 
     def __call__(self, value):
         flag_for_validation = True
-        for word in value.split():
-            for important_word in self.base:
-                word = word.lower()
-                text = re.findall('[a-zа-яё]+', word, flags=re.IGNORECASE)
-                try:
-                    if important_word.lower() == text[0]:
-                        flag_for_validation = False
-                        break
-                except IndexError:
-                    continue
+        if re.search(re.compile(fr'\b({self.base})\b', re.I), value):
+            flag_for_validation = False
         if flag_for_validation:
-            message = f'Должны быть слова: {", ".join(list(self.base))}'
+            message = f'Должны быть слова: {", ".join(self.base.split("|"))}'
             raise ValidationError(message)
         return value
 
