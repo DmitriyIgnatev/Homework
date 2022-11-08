@@ -25,13 +25,13 @@
             <ul class="navbar-nav">
               <li class="nav-item">
               {% with request.resolver_match.view_name as view_name %}
-                <a {% if view_name == 'homepage.views.home' %} class='nav-link active'{% else %} class='nav-link' {% endif %} href='/'>Главная</a>
+                <a {% if view_name == 'homepage.views.home' %} class='nav-link active'{% else %} class='nav-link' {% endif %} href='/home'>Главная</a>
               </li>
               <li class="nav-item">
-                <a {% if view_name == 'catalog.views.item_list' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/catalog">Каталог</a>
+                <a {% if view_name == 'catalog.views.item_list' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/catalog/catalog_new">Каталог</a>
               </li>
               <li class="nav-item">
-                <a {% if view_name == 'about.views.description' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/about">О проекте</a>
+                <a {% if view_name == 'about.views.description' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/ab/">О проекте</a>
               </li>
               {% endwith %}
               <li class="nav-item">
