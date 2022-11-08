@@ -37,7 +37,7 @@ class Item(Core):
 
     def image_tmb(self):
         if self.photo:
-            return mark_safe(f'<img scr="{self.get_img.url}" />')
+            return mark_safe(f'<img src="{self.get_img.url}" />')
         return 'изображение не найдено'
 
     image_tmb.short_description = 'превью'
@@ -86,6 +86,8 @@ class MainPhoto(models.Model):
 
 
 class Gallery(models.Model):
+    photo = models.ImageField(
+        upload_to='uploads//%Y/%m/%d/')
     gallery = models.ForeignKey(
         'Item',
         on_delete=models.CASCADE,
