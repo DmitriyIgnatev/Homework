@@ -70,7 +70,7 @@ class Category(Core):
 
     class Meta:
         verbose_name = 'категория'
-        verbose_name_plural = 'категории'
+        verbose_name_plural = 'категори'
 
     def __str__(self):
         return self.name
