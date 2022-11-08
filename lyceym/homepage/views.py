@@ -1,5 +1,5 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import render
 
 
-def home(req):
-    return HttpResponse('Главная ')
+def home(request):
+    return render(request, 'homepage.html')

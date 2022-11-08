@@ -1,8 +1,8 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 
 
-def item_list(req):
-    return HttpResponse('Список элементов')
+def item_list(request):
+    return render(request, 'catalog.html')
 
 
 def item_detail(req, pk):

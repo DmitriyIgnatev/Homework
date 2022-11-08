@@ -1,0 +1,46 @@
+{% load static %}
+{% csrf_token %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Тут что-то написано</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/favico/favicon-16x16.png">
+  <link rel="manifest" href="/static/favico/site.webmanifest">
+  <link rel="mask-icon" href="/static/favico/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+              {% with request.resolver_match.view_name as view_name %}
+                <a {% if view_name == 'homepage.views.home' %} class='nav-link active'{% else %} class='nav-link' {% endif %} href='/'>Главная</a>
+              </li>
+              <li class="nav-item">
+                <a {% if view_name == 'catalog.views.item_list' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/catalog">Каталог</a>
+              </li>
+              <li class="nav-item">
+                <a {% if view_name == 'about.views.description' %} class='nav-link active' {% else %} class='nav-link' {% endif %} href="/about">О проекте</a>
+              </li>
+              {% endwith %}
+              <li class="nav-item">
+              </li>
+              <img src="{% static 'img/1.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="7%" height="7%">
+            </nav>
+          
+      {% block content %}   {% endblock %}
+</body>
+</html>
