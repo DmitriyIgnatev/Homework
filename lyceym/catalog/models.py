@@ -15,7 +15,8 @@ class Item(Core):
         verbose_name='категории')
     tag = models.ManyToManyField('Tag', verbose_name='теги')
     photo = models.ImageField(
-        upload_to='uploads/%Y/%m/%d/')
+        upload_to='uploads/%Y/%m/%d/',
+        default='img/defaultphoto.jpg')
 
     class Meta:
         verbose_name = 'товар'
