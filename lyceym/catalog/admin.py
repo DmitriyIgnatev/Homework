@@ -24,4 +24,6 @@ class CatalogAdmin(admin.ModelAdmin):
     list_display_links = ['name']
 
 
-admin.site.register(Gallery)
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ['image_tmb']

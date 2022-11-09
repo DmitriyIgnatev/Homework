@@ -77,7 +77,7 @@ class Category(Core):
 
 class Gallery(models.Model):
     photo = models.ImageField(
-        upload_to='uploads//%Y/%m/%d/')
+        upload_to='uploads//%Y/%m/%d/', verbose_name='фото')
     gallery = models.ForeignKey(
         'Item',
         on_delete=models.CASCADE,
@@ -86,3 +86,19 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = 'галерея фотографии'
         verbose_name_plural = 'галерея фотографии'
+
+    @property
+    def get_img(self):
+        return get_thumbnail(
+            self.photo,
+            '300x300',
+            crop='center',
+            quality=51)
+
+    def image_tmb(self):
+        if self.photo:
+            return mark_safe(f'<img src="{self.get_img.url}" />')
+        return 'изображение не найдено'
+
+    image_tmb.short_description = 'превью'
+    image_tmb.allow_tags = True
