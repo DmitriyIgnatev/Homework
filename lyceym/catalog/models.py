@@ -14,11 +14,8 @@ class Item(Core):
         on_delete=models.CASCADE,
         verbose_name='категории')
     tag = models.ManyToManyField('Tag', verbose_name='теги')
-    photo = models.OneToOneField(
-        'MainPhoto',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True)
+    photo = models.ImageField(
+        upload_to='uploads/%Y/%m/%d/')
 
     class Meta:
         verbose_name = 'товар'
@@ -30,7 +27,7 @@ class Item(Core):
     @property
     def get_img(self):
         return get_thumbnail(
-            self.photo.photo,
+            self.photo,
             '300x300',
             crop='center',
             quality=51)
@@ -70,19 +67,10 @@ class Category(Core):
 
     class Meta:
         verbose_name = 'категория'
-        verbose_name_plural = 'категори'
+        verbose_name_plural = 'категории'
 
     def __str__(self):
         return self.name
-
-
-class MainPhoto(models.Model):
-    photo = models.ImageField(
-        upload_to='uploads//%Y/%m/%d/')
-
-    class Meta:
-        verbose_name = 'главная фотография'
-        verbose_name_plural = 'главные фотографии'
 
 
 class Gallery(models.Model):

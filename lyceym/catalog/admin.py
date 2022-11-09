@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Item, Tag, Category, MainPhoto, Gallery
+from .models import Item, Tag, Category, Gallery
 
 
 @admin.register(Item)
@@ -25,4 +25,3 @@ class CatalogAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Gallery)
-admin.site.register(MainPhoto)

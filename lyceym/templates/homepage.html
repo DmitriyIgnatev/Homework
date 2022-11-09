@@ -1,4 +1,10 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
 {% load static %}
-
-{% block content %} хомепадже {% endblock %}
+{% block content %}
+<br>
+<br>
+<h1 style='margin-left:780px'>Главная страница</h1>
+<br>
+<br>
+<img src="{% static 'img/redamogus.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="300" height='300' style='margin-left:800px'>
+{% endblock %}

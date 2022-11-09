@@ -1,2 +1,10 @@
-{% include 'main.html' %}
-о проекте
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<br>
+<h1 style='margin-left:900px'>О нас</h1>
+<br>
+<br>
+<img src="{% static 'img/whiteamogus.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="200" height="230" style='margin-left:850px'>
+{% endblock %}
