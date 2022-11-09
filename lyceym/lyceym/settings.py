@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-from django_cleanup.signals import cleanup_pre_delete
-from sorl.thumbnail import delete
 
 
 load_dotenv()
