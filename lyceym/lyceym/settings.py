@@ -142,10 +142,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-
-
-def sorl_delete(**kwargs):
-    delete(kwargs['file'])
-
-
-cleanup_pre_delete.connect(sorl_delete)
