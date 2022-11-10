@@ -3,10 +3,11 @@ from .validators import Validate_amazing, validate_number
 from core.models import Core
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
+from tinymce import models as tinymce_models
 
 
 class Item(Core):
-    text = models.TextField(
+    text = tinymce_models.HTMLField(
         verbose_name='текст',
         validators=[Validate_amazing('превосходно', 'роскошно'), ])
     category = models.ForeignKey(

@@ -22,7 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('homepage.urls')),
     path('catalog/', include('catalog.urls')),
-    path('', include('about.urls'))
+    path('', include('about.urls')),
+    path('tinymce/', include('tinymce.urls'))
 ]
 
 if settings.DEBUG:
