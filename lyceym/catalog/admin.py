@@ -2,12 +2,18 @@ from django.contrib import admin
 from .models import Item, Tag, Category, Gallery
 
 
+class GalleryImageInline(admin.TabularInline):
+    model = Gallery
+    extra = 3
+
+
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = ['name', 'is_published', 'image_tmb']
     list_editable = ['is_published']
     filter_horizontal = ['tag']
     list_display_links = ['name']
+    inlines = [GalleryImageInline]
 
 
 @admin.register(Tag)
@@ -24,6 +30,4 @@ class CatalogAdmin(admin.ModelAdmin):
     list_display_links = ['name']
 
 
-@admin.register(Gallery)
-class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['image_tmb']
+admin.site.register(Gallery)

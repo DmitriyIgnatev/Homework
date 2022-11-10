@@ -87,18 +87,18 @@ class Gallery(models.Model):
         verbose_name = 'галерея фотографии'
         verbose_name_plural = 'галерея фотографии'
 
-    @property
-    def get_img(self):
-        return get_thumbnail(
-            self.photo,
-            '300x300',
-            crop='center',
-            quality=51)
+    # @property
+    # def get_img(self):
+    #     return get_thumbnail(
+    #         self.photo,
+    #         '300x300',
+    #         crop='center',
+    #         quality=51)
 
-    def image_tmb(self):
-        if self.photo:
-            return mark_safe(f'<img src="{self.get_img.url}" />')
-        return 'изображение не найдено'
+    # def image_tmb(self):
+    #     if self.photo:
+    #         return mark_safe(f'<img src="{self.get_img.url}" />')
+    #     return 'изображение не найдено'
 
-    image_tmb.short_description = 'превью'
-    image_tmb.allow_tags = True
+    # image_tmb.short_description = 'превью'
+    # image_tmb.allow_tags = True

@@ -1,0 +1,12 @@
+.container{
+    text-align: center;
+    height: 75vh;
+}
+
+.navbar-nav{
+    margin: auto;
+}
+
+.nav-item{
+    margin-left: 50px;;
+}

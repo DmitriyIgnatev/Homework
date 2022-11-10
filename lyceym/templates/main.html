@@ -10,51 +10,14 @@
       <link rel="manifest" href="{% static 'favico/site.webmanifest' %}">
       <meta name="msapplication-TileColor" content="#da532c">
       <meta name="theme-color" content="#ffffff">
-      <link rel="stylesheet" href="style.css"/>
+      <link rel="stylesheet" href=" {% static 'css/br.css' %}"/>
       <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
       <script src="{% static 'js/bootstrap.bundle.min.js' %}" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-      
     </head>
    
    <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         <div class="container-fluid">
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-         </button>
-         <img src="{% static 'img/1.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="50" height="40">
-         <div class="collapse navbar-collapse" id="navbarNav">
-         <ul class="navbar-nav">
-         <li class="nav-item">
-            {% with request.resolver_match.view_name as view_name %}
-            <a {% if request.resolver_match.url_name == 'homepage' %} class='nav-link active' style='font-size:15pt; margin-left:600px; position:absolute'{% else %} class='nav-link' style='margin-left:600px; position:absolute' {% endif %} href='/'>Главная</a>
-         </li>
-         <li class="nav-item">
-            <a {% if request.resolver_match.url_name == 'catalog' %} class='nav-link active' style='font-size:15pt; margin-left:860px; position:absolute'{% else %} class='nav-link' style='margin-left:860px; position:absolute' {% endif %} href="/catalog">Каталог</a>
-         </li>
-         <li class="nav-item">
-            <a {% if request.resolver_match.url_name == 'about' %} class='nav-link active' style='font-size:15pt; margin-left:1120px; position:absolute'{% else %} class='nav-link' style='margin-left:1120px; position:absolute'{% endif %} href="/about">О проекте</a>
-         </li>
-         {% endwith %}
-         <li class="nav-item">
-         </li> 
-        </ul>  
-        </div>
-        </div>
-      </nav>
-
-      {% block content %}   {% endblock %}
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>   
+      {% include 'includes/header.html' %}
+      {% block content %}   {% endblock %}  
       {% include 'includes/footer.html' %}
    </body>
 </html>
