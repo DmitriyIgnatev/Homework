@@ -78,7 +78,7 @@ class Category(Core):
 
 class Gallery(models.Model):
     photo = models.ImageField(
-        upload_to='uploads//%Y/%m/%d/', verbose_name='фото')
+        upload_to='uploads/%Y/%m/%d/', verbose_name='фото')
     gallery = models.ForeignKey(
         'Item',
         on_delete=models.CASCADE,
