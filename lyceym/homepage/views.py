@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from catalog.models import Item
 
 
 def home(request):
-    return render(request, 'homepage.html')
+    item = Item.objects.filter(is_on_main=True)
+    context = {
+        'item': item
+    }
+    return render(request, 'homepage.html', context)

@@ -4,9 +4,25 @@ from core.models import Core
 from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 from tinymce import models as tinymce_models
+from django.db.models import Prefetch
+
+
+class ItemManager(models.Manager):
+    def published(self):
+        return (
+            self.get_queryset()
+                .filter(is_published=True)
+                .select_related('category')
+                .order_by('category')
+                .prefetch_related(
+                    Prefetch('tag', queryset=Tag.objects.all())
+                )
+        )
 
 
 class Item(Core):
+    objects = ItemManager()
+
     text = tinymce_models.HTMLField(
         verbose_name='текст',
         validators=[Validate_amazing('превосходно', 'роскошно'), ])
@@ -19,10 +35,12 @@ class Item(Core):
         upload_to='uploads/%Y/%m/%d/',
         default='img/defaultphoto.jpg',
         verbose_name='превью')
+    is_on_main = models.BooleanField(default=False, verbose_name='флаг')
 
     class Meta:
         verbose_name = 'товар'
         verbose_name_plural = 'товары'
+        ordering = ('name',)
 
     def __str__(self) -> str:
         return self.name

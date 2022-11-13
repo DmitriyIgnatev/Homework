@@ -3,9 +3,10 @@
 {% block content %}
 <section>
     <div class='container'>
-<h1>Каталог товаров</h1>
-<img src="{% static 'img/angelamogus.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="300" height="230">
-    </div>
+        <h1>Каталог товаров</h1>
+        <img src="{% static 'img/angelamogus.png' %}" alt='Если вы это читаете, то видимо что-то пошло не так' width="300" height="230">
+        {% include 'includes/item.html' %}
+    </div> 
 </section>
     
 {% endblock %}
