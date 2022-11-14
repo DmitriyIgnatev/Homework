@@ -209,5 +209,3 @@ class ModelsTestFive(TestCase):
         Category.objects.all().delete()
         Item.objects.all().delete()
         Tag.objects.all().delete()
-
-
