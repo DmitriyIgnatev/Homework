@@ -13,7 +13,7 @@ class ItemManager(models.Manager):
             self.get_queryset()
                 .filter(is_published=True)
                 .select_related('category')
-                .order_by('category')
+                .order_by('category', 'name')
                 .prefetch_related(
                     Prefetch('tag', queryset=Tag.objects.all())
                 )
@@ -24,7 +24,7 @@ class ItemManager(models.Manager):
             self.get_queryset()
                 .filter(is_on_main=True)
                 .select_related('category')
-                .order_by('category')
+                .order_by('category', 'name')
                 .prefetch_related(
                     Prefetch('tag', queryset=Tag.objects.all())
                 )
