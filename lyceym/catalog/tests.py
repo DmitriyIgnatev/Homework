@@ -4,9 +4,6 @@ from django.core.exceptions import ValidationError
 
 
 class StaticURLTests(TestCase):
-    def test_catalog_endpoint(self):
-        response = Client().get('/catalog/12/')
-        self.assertEqual(response.status_code, 200)
 
     def test_minus_endpoint(self):
         response = Client().get('/catalog/-5/')
@@ -27,10 +24,6 @@ class StaticURLTests(TestCase):
     def test_catalog_endpoint_more(self):
         response = Client().get('/catalog/')
         self.assertEqual(response.status_code, 200)
-
-    def test_catalog_new_endpoint(self):
-        response = Client().get('/catalog/0/')
-        self.assertEqual(response.status_code, 404)
 
     def test_catalog_new_numandcup_endpoint(self):
         response = Client().get('/catalog/-1something/')
@@ -216,3 +209,5 @@ class ModelsTestFive(TestCase):
         Category.objects.all().delete()
         Item.objects.all().delete()
         Tag.objects.all().delete()
+
+

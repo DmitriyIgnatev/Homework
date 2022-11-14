@@ -11,8 +11,12 @@
         {% for it in item %}
         <tr>
             <td>{{it.name}}</td>
-            <td>{{it.category}}</td>
-            <td>{{it.text|safe}}</td>
+            {% ifchanged %}
+              <td><b>{{it.category}}</b></td>
+            {% else %}
+              <td>{{it.category}}</td>
+            {% endifchanged %}
+            <td>{{ it.text|striptags|truncatewords:10 }}</td>
             <td>
                 {% for tag in it.tag.all %}
                     {{ tag }}
