@@ -3,7 +3,7 @@ from catalog.models import Item
 
 
 def home(request):
-    item = Item.objects.filter(is_on_main=True)
+    item = Item.objects.mainpublished()
     context = {
         'item': item
     }

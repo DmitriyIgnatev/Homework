@@ -19,6 +19,17 @@ class ItemManager(models.Manager):
                 )
         )
 
+    def mainpublished(self):
+        return (
+            self.get_queryset()
+                .filter(is_on_main=True)
+                .select_related('category')
+                .order_by('category')
+                .prefetch_related(
+                    Prefetch('tag', queryset=Tag.objects.all())
+                )
+        )
+
 
 class Item(Core):
     objects = ItemManager()
