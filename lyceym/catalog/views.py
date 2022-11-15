@@ -11,9 +11,8 @@ def item_list(request):
 
 
 def item_detail(req, pk):
-    item = get_object_or_404(Item, pk=pk)
+    item = [get_object_or_404(Item, pk=pk)]
     context = {
-        'item': [item],
-        'photo': item.photo,
+        'item': item,
     }
-    return render(req, 'catalogitem.html', context)
+    return render(req, 'catalog_item.html', context)

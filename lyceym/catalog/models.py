@@ -15,19 +15,21 @@ class ItemManager(models.Manager):
                 .select_related('category')
                 .order_by('category', 'name')
                 .prefetch_related(
-                    Prefetch('tag', queryset=Tag.objects.all())
-                )
+                    Prefetch('tag', queryset=Tag.objects.filter(
+                        is_published=True))
+                ).only('name', 'text', 'tag', 'photo', 'category')
         )
 
-    def mainpublished(self):
+    def main_published(self):
         return (
             self.get_queryset()
                 .filter(is_on_main=True)
                 .select_related('category')
                 .order_by('category', 'name')
                 .prefetch_related(
-                    Prefetch('tag', queryset=Tag.objects.all())
-                )
+                    Prefetch('tag', queryset=Tag.objects.filter(
+                        is_published=True))
+                ).only('name', 'text', 'tag', 'photo', 'category')
         )
 
 
@@ -116,19 +118,3 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = 'галерея фотографии'
         verbose_name_plural = 'галерея фотографии'
-
-    # @property
-    # def get_img(self):
-    #     return get_thumbnail(
-    #         self.photo,
-    #         '300x300',
-    #         crop='center',
-    #         quality=51)
-
-    # def image_tmb(self):
-    #     if self.photo:
-    #         return mark_safe(f'<img src="{self.get_img.url}" />')
-    #     return 'изображение не найдено'
-
-    # image_tmb.short_description = 'превью'
-    # image_tmb.allow_tags = True

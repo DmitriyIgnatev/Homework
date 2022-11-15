@@ -5,24 +5,27 @@
         <th scope="col">Категория</th>
         <th scope="col">Текст</th>
         <th scope="col">Тэги</th>
+        <th scope="col">Превью</th>
       </tr>
     </thead>
     <tbody>
-        {% for it in item %}
+        {% for items in item %}
         <tr>
-            <td>{{it.name}}</td>
+            <td><a class="name" href="/catalog/{{items.id}}">{{items.name}}</a></td>
             {% ifchanged %}
-              <td><b>{{it.category}}</b></td>
+              <td><b>{{items.category}}</b></td>
             {% else %}
-              <td>{{it.category}}</td>
+              <td>{{items.category}}</td>
             {% endifchanged %}
-            <td>{{ it.text|striptags|truncatewords:10 }}</td>
+            <td>{{ items.text|striptags|truncatewords:10 }}</td>
             <td>
-                {% for tag in it.tag.all %}
+                {% for tag in items.tag.all %}
                     {{ tag }}
                 {% endfor %}
             </td>
-            
+            <td>
+              <img src="{{ items.photo.url }}" alt="Если вы это читаете, то видимо что-то пошло не так" class="catalogimg">
+            </td>
         {% endfor %}
     </tbody>
   </table>

@@ -1,6 +1,5 @@
 .container{
     text-align: center;
-    height: 75vh;
 }
 
 .navbar-nav{
@@ -21,4 +20,8 @@
 .catalogimg{
     width: 20%;
     height: 30%;
+}
+
+.name{
+    color: black;
 }

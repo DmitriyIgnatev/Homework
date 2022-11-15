@@ -3,7 +3,7 @@ from catalog.models import Item
 
 
 def home(request):
-    item = Item.objects.mainpublished()
+    item = Item.objects.main_published()
     context = {
         'item': item
     }

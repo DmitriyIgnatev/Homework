@@ -1,6 +1,7 @@
 from django.test import Client, TestCase
 from .models import Item, Tag, Category
 from django.core.exceptions import ValidationError
+from django.urls import reverse
 
 
 class StaticURLTests(TestCase):
@@ -203,6 +204,54 @@ class ModelsTestFive(TestCase):
             self.item.full_clean()
             self.item.save()
         self.assertEqual(Tag.objects.count(), item_count)
+
+    def tearDown(self):
+        super().tearDown()
+        Category.objects.all().delete()
+        Item.objects.all().delete()
+        Tag.objects.all().delete()
+
+
+class TaskCatalogTest(TestCase):
+    def test_catalog_request(self):
+        responce = Client().get(reverse('catalog:catalog'))
+        self.assertIn('item', responce.context)
+
+    def test_catalog_correct_context(self):
+        responce = Client().get(reverse('catalog:catalog'))
+        self.assertEqual(len(responce.context), 5)
+
+    def test_check_context(self):
+        responce = Client().get(reverse('catalog:catalog'))
+        self.assertIn('item', responce.context)
+
+
+class ModelsTestContext(TestCase):
+    @classmethod
+    def setUpClassContext(cls):
+        super().setUpClassFive()
+        cls.category = Category.objects.create(
+            name='Тестовая категория',
+            slug='test-category-test')
+
+        cls.tag = Tag.objects.create(
+            name='Тестовый тэг',
+            slug='tag-category-test')
+
+    def test_unable_create_tag(self):
+        category = Category.objects.create(
+            name='Тестовая категория',
+            slug='test-category-test')
+
+        self.item = Item(
+                name='молоко',
+                text='Просто тест превосходно',
+                category=category,
+                )
+        self.item.full_clean()
+        self.item.save()
+        responce = Client().get(reverse('catalog:catalog'))
+        self.assertEqual(responce.context[0]['item'][0], self.item)
 
     def tearDown(self):
         super().tearDown()
