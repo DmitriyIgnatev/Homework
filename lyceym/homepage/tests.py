@@ -57,8 +57,8 @@ class ModelsTestContext(TestCase):
         self.item.full_clean()
         self.item.save()
         response = Client().get(reverse('homepage:homepage'))
-        self.assertEqual(response.context['items'].get(), self.item)
-        self.assertEqual(len(response.context), 5)
+        self.assertEqual(list(response.context['items'])[0], self.item)
+        self.assertEqual(len(response.context['items']), 1)
 
     def tearDown(self):
         super().tearDown()
@@ -93,8 +93,8 @@ class ModelsTestaHomePAgeContext(TestCase):
         self.item.full_clean()
         self.item.save()
         response = Client().get(reverse('homepage:homepage'))
-        self.assertEqual(response.context.get, [])
-        self.assertEqual(len(response.context), 5)
+        self.assertEqual(response.context.value, [])
+        self.assertEqual(len(response.context['items']), 0)
 
     def tearDown(self):
         super().tearDown()

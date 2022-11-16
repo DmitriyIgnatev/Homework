@@ -219,7 +219,7 @@ class TaskCatalogTest(TestCase):
 
     def test_catalog_correct_context(self):
         responce = Client().get(reverse('catalog:catalog'))
-        self.assertEqual(len(responce.context), 5)
+        self.assertEqual(len(responce.context['items']), 0)
 
 
 class ModelsTestContext(TestCase):
@@ -248,7 +248,7 @@ class ModelsTestContext(TestCase):
         self.item.save()
         response = Client().get(reverse('catalog:catalog'))
         self.assertEqual(response.context['items'].get(), self.item)
-        self.assertEqual(len(response.context), 5)
+        self.assertEqual(len(response.context['items']), 1)
 
     def tearDown(self):
         super().tearDown()
