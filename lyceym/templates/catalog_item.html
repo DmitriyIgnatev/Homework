@@ -16,13 +16,8 @@
          </thead>
          <tbody>
              <tr>
-               {{item.item}}
                  <td><a class="name" href="/catalog/{{item.id}}">{{item.name}}</a></td>
-                 {% ifchanged %}
-                   <td><b>{{item.category}}</b></td>
-                 {% else %}
-                   <td>{{item.category}}</td>
-                 {% endifchanged %}
+                 <td>{{item.category}}</td>
                  <td>{{ item.text|safe}}</td>
                  <td>
                      {% for tag in item.tag.all %}

@@ -247,8 +247,8 @@ class ModelsTestContext(TestCase):
         self.item.full_clean()
         self.item.save()
         response = Client().get(reverse('catalog:catalog'))
-        self.assertEqual(list(response.context['items'])[0], self.item)
         self.assertEqual(len(response.context['items']), 1)
+        self.assertEqual(list(response.context['items'])[0], self.item)
 
     def tearDown(self):
         super().tearDown()

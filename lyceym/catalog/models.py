@@ -11,13 +11,13 @@ class ItemManager(models.Manager):
     def published(self):
         return (
             self.get_queryset()
-                .filter(is_published=True)
+                .filter(is_published=True, category__is_published=True)
                 .select_related('category')
                 .order_by('category', 'name')
                 .prefetch_related(
                     Prefetch('tag', queryset=Tag.objects.filter(
                         is_published=True))
-                ).only('name', 'text', 'tag', 'photo', 'category')
+                ).only('name', 'text', 'tag', 'photo', 'category__name')
         )
 
 
