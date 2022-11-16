@@ -53,7 +53,7 @@ class ModelsTestContext(TestCase):
                 name='homepage',
                 text='Просто тест превосходно',
                 category=category,
-                is_on_main=True) 
+                is_on_main=True)
         self.item.full_clean()
         self.item.save()
         response = Client().get(reverse('homepage:homepage'))
@@ -89,7 +89,7 @@ class ModelsTestaHomePAgeContext(TestCase):
                 name='homepage',
                 text='Просто тест превосходно',
                 category=category,
-                is_on_main=False)  
+                is_on_main=False)
         self.item.full_clean()
         self.item.save()
         response = Client().get(reverse('homepage:homepage'))
