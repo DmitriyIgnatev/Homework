@@ -9,22 +9,22 @@
       </tr>
     </thead>
     <tbody>
-        {% for items in item %}
+        {% for item in items %}
         <tr>
-            <td><a class="name" href="/catalog/{{items.id}}">{{items.name}}</a></td>
+            <td><a class="name" href="/catalog/{{item.id}}">{{item.name}}</a></td>
             {% ifchanged %}
-              <td><b>{{items.category}}</b></td>
+              <td><b>{{item.category}}</b></td>
             {% else %}
-              <td>{{items.category}}</td>
+              <td>{{item.category}}</td>
             {% endifchanged %}
-            <td>{{ items.text|striptags|truncatewords:10 }}</td>
+            <td>{{ item.text|striptags|truncatewords:10 }}</td>
             <td>
-                {% for tag in items.tag.all %}
+                {% for tag in item.tag.all %}
                     {{ tag }}
                 {% endfor %}
             </td>
             <td>
-              <img src="{{ items.photo.url }}" alt="Если вы это читаете, то видимо что-то пошло не так" class="catalogimg">
+              <img src="{{ item.photo.url }}" alt="Если вы это читаете, то видимо что-то пошло не так" class="catalogimg">
             </td>
         {% endfor %}
     </tbody>

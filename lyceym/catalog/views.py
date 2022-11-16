@@ -1,18 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from .models import Item
 
 
 def item_list(request):
     items = Item.objects.published()
     context = {
-        'item': items
+        'items': items
     }
     return render(request, 'catalog.html', context)
 
 
 def item_detail(req, pk):
-    item = [get_object_or_404(Item, pk=pk)]
+    item = Item.objects.get_item(pk=pk)
     context = {
-        'item': item,
+        'items': item
     }
     return render(req, 'catalog_item.html', context)

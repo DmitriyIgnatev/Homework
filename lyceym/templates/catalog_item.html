@@ -4,7 +4,36 @@
 <section>
    <div class="container">
       <h1>Подробно элемент</h1>
-      {% include "includes/item.html" %}
+      <table class="table">
+         <thead>
+           <tr>
+             <th scope="col">Имя</th>
+             <th scope="col">Категория</th>
+             <th scope="col">Текст</th>
+             <th scope="col">Тэги</th>
+             <th scope="col">Превью</th>
+           </tr>
+         </thead>
+         <tbody>
+             <tr>
+               {{items.item}}
+                 <td><a class="name" href="/catalog/{{items.id}}">{{items.name}}</a></td>
+                 {% ifchanged %}
+                   <td><b>{{items.category}}</b></td>
+                 {% else %}
+                   <td>{{items.category}}</td>
+                 {% endifchanged %}
+                 <td>{{ items.text|safe}}</td>
+                 <td>
+                     {% for tag in items.tag.all %}
+                         {{ tag }}
+                     {% endfor %}
+                 </td>
+                 <td>
+                   <img src="{{ items.photo.url }}" alt="Если вы это читаете, то видимо что-то пошло не так" class="catalogimg">
+                 </td>
+         </tbody>
+       </table>
    </div>
 </section>
 {% endblock %}

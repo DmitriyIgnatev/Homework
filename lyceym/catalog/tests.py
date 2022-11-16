@@ -215,15 +215,11 @@ class ModelsTestFive(TestCase):
 class TaskCatalogTest(TestCase):
     def test_catalog_request(self):
         responce = Client().get(reverse('catalog:catalog'))
-        self.assertIn('item', responce.context)
+        self.assertIn('items', responce.context)
 
     def test_catalog_correct_context(self):
         responce = Client().get(reverse('catalog:catalog'))
         self.assertEqual(len(responce.context), 5)
-
-    def test_check_context(self):
-        responce = Client().get(reverse('catalog:catalog'))
-        self.assertIn('item', responce.context)
 
 
 class ModelsTestContext(TestCase):
@@ -250,8 +246,9 @@ class ModelsTestContext(TestCase):
                 )
         self.item.full_clean()
         self.item.save()
-        responce = Client().get(reverse('catalog:catalog'))
-        self.assertEqual(responce.context[0]['item'][0], self.item)
+        response = Client().get(reverse('catalog:catalog'))
+        self.assertEqual(response.context['items'].get(), self.item)
+        self.assertEqual(len(response.context), 5)
 
     def tearDown(self):
         super().tearDown()

@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 from sorl.thumbnail import get_thumbnail
 from tinymce import models as tinymce_models
 from django.db.models import Prefetch
+from django.shortcuts import Http404
 
 
 class ItemManager(models.Manager):
@@ -20,17 +21,19 @@ class ItemManager(models.Manager):
                 ).only('name', 'text', 'tag', 'photo', 'category')
         )
 
-    def main_published(self):
-        return (
-            self.get_queryset()
-                .filter(is_on_main=True)
+    def get_item(self, *args, **kwargs):
+        try:
+            return (
+                self.get_queryset()
                 .select_related('category')
-                .order_by('category', 'name')
                 .prefetch_related(
-                    Prefetch('tag', queryset=Tag.objects.filter(
-                        is_published=True))
-                ).only('name', 'text', 'tag', 'photo', 'category')
-        )
+                        Prefetch('tag', queryset=Tag.objects.filter(
+                            is_published=True))).get(*args, **kwargs)
+            )
+        except Item.DoesNotExist:
+            raise Http404(
+                'Такого обьекта нет'
+            )
 
 
 class Item(Core):

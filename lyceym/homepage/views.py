@@ -3,8 +3,8 @@ from catalog.models import Item
 
 
 def home(request):
-    item = Item.objects.main_published()
+    item = Item.objects.published().filter(is_on_main=True).order_by('name')
     context = {
-        'item': item
+        'items': item
     }
     return render(request, 'homepage.html', context)
