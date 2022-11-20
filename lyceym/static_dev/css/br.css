@@ -1,5 +1,6 @@
 .container{
     text-align: center;
+    margin-top: 50px;
 }
 
 .navbar-nav{
@@ -24,4 +25,12 @@
 
 .name{
     color: black;
+}
+
+.startimg{
+    position: absolute;
+}
+
+.btn-success{
+    margin-top: 50px;
 }
