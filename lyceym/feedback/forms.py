@@ -1,17 +1,5 @@
-from django.db import models
+from .models import FeedbackModel
 from django import forms
-
-
-class FeedbackModel(models.Model):
-    text = models.CharField(
-        'текст',
-        help_text='Поле для обратной связи',
-        max_length=500)
-
-    created_on = models.DateTimeField(
-        'дата',
-        help_text='Дата создания фидбека',
-        auto_now_add=True)
 
 
 class Form(forms.ModelForm):
@@ -22,9 +10,10 @@ class Form(forms.ModelForm):
 
     class Meta:
         model = FeedbackModel
-        fields = ('text',)
+        fields = ('text', 'email')
         labels = {
-            'text': 'текст'}
+            'text': 'текст',
+            'email': 'ваша почта'}
         help_text = {
             FeedbackModel.text.field.help_text: 'помогаем'}
         labels = {

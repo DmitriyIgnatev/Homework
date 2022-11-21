@@ -21,8 +21,14 @@
             {% endif %}
             {{ form.text.label }}
             {{ form.text }}
-            {{ form.created_on}}
+            {{ form.email.label }}
+            {{ form.email }}
             <input type="submit" value="Отправить" class="btn btn-success">
+            {% if messages %}
+               {% for message in messages %}
+                  <p class="feedback">{{ message }}</p>
+               {% endfor %}
+            {% endif %}
          </form>
     </div> 
 </section>

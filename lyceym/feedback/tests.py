@@ -21,7 +21,9 @@ class FormTest(TestCase):
     def test_create_task(self):
         item_count = Item.objects.count()
         form_data = {
-            'text': 'Тест'}
+            'text': 'Тест',
+            'email': 'Duck123321@yandex.ru'
+            }
 
         response = Client().post(
             reverse('feedback:feedback'),

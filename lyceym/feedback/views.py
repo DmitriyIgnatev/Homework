@@ -1,25 +1,31 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from .forms import Form
 from django.core.mail import send_mail
-from .models import Feedback
+from .models import FeedbackModel
+from django.contrib import messages
 
 
 def feedback(request):
+    '''is_send отвечает за то, отправлено сообщение или нет'''
+
     form = Form(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        feedback = Feedback.objects.create()
         text = form.cleaned_data['text']
-        date = feedback.created_on
+        email = form.cleaned_data['email']
+        feedback = FeedbackModel.objects.create(
+            text=text,
+            email=email)
         feedback.text = text
         feedback.save()
         send_mail(
-            date,
+            f'Спасибо за ваше обращение! Ваше письмо: {feedback.created_on}',
             text,
-            'example@yandex.ru',
+            email,
             ['Duck123321@yandex.ru'],
             fail_silently=True)
-        return redirect(reverse('feedback:feedback'))
+        messages.success(request, "Ваше сообщение успешно отправлено")
+        return redirect('feedback:feedback')
     context = {
-        'form': form
+        'form': form,
     }
     return render(request, 'feedback.html', context)

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Feedback
+from .models import FeedbackModel
 
 
-@admin.register(Feedback)
+@admin.register(FeedbackModel)
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ['created_on']
+    list_display = ('email', 'created_on',)
