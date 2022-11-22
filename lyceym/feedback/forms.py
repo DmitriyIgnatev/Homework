@@ -2,7 +2,7 @@ from .models import FeedbackModel
 from django import forms
 
 
-class Form(forms.ModelForm):
+class FeedbackForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.visible_fields():

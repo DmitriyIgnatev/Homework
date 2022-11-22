@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import Form
+from .forms import FeedbackForm
 from django.core.mail import send_mail
 from .models import FeedbackModel
 from django.contrib import messages
@@ -8,7 +8,7 @@ from django.contrib import messages
 def feedback(request):
     '''is_send отвечает за то, отправлено сообщение или нет'''
 
-    form = Form(request.POST or None)
+    form = FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         text = form.cleaned_data['text']
         email = form.cleaned_data['email']

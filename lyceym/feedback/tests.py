@@ -1,4 +1,4 @@
-from .forms import Form
+from .forms import FeedbackForm
 from django.test import Client, TestCase
 from django.urls import reverse
 from catalog.models import Item
@@ -8,7 +8,7 @@ class FormTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.form = Form()
+        cls.form = FeedbackForm()
 
     def test_new_label(self):
         new_label = FormTest.form.fields['text'].label
