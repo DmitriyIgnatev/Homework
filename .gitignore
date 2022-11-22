@@ -1,7 +1,6 @@
 __pycache__
 setup.cfg
 venv
-send_emails
 thumbnail
 uploads
-cache
+db.sqlite3
