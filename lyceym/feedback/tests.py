@@ -24,6 +24,8 @@ class FormTest(TestCase):
             'text': 'Тест',
             'email': 'Duck123321@yandex.ru'
             }
+        form = FeedbackForm(
+            data=form_data)
 
         response = Client().post(
             reverse('feedback:feedback'),
@@ -31,5 +33,5 @@ class FormTest(TestCase):
             follow=True)
 
         self.assertRedirects(response, reverse('feedback:feedback'))
-
         self.assertEqual(Item.objects.count(), item_count)
+        self.assertTrue(form.is_valid())

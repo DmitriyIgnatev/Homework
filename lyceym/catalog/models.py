@@ -57,7 +57,6 @@ class Item(Core):
     def image_tmb(self):
         if self.photo:
             return mark_safe(f'<img src="{self.get_img.url}" />')
-            print(self.get_img.url)
         return 'изображение не найдено'
 
     image_tmb.short_description = 'превью'

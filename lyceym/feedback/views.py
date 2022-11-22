@@ -10,18 +10,13 @@ def feedback(request):
 
     form = FeedbackForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        text = form.cleaned_data['text']
-        email = form.cleaned_data['email']
-        feedback = FeedbackModel.objects.create(
-            text=text,
-            email=email)
-        feedback.text = text
+        feedback = FeedbackModel.objects.create(**form.cleaned_data)
         feedback.save()
         send_mail(
             f'Спасибо за ваше обращение! Ваше письмо: {feedback.created_on}',
-            text,
-            email,
-            ['Duck123321@yandex.ru'],
+            feedback.text,
+            'Duck1233212@yandex.ru',
+            [feedback.email],
             fail_silently=True)
         messages.success(request, "Ваше сообщение успешно отправлено")
         return redirect('feedback:feedback')
