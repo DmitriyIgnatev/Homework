@@ -13,8 +13,11 @@ class FeedbackForm(forms.ModelForm):
         fields = ('text', 'email')
         labels = {
             'text': 'текст',
-            'email': 'ваша почта'}
+            'email': 'ваша почта'
+            }
         help_text = {
-            FeedbackModel.text.field.help_text: 'помогаем'}
+            FeedbackModel.text.field.help_text: 'помогаем'
+            }
         labels = {
-            FeedbackModel.text.field.name: 'текст'}
+            FeedbackModel.text.field.name: 'текст'
+            }
