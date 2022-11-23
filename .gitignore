@@ -4,3 +4,5 @@ venv
 thumbnail
 uploads
 db.sqlite3
+cache
+send_emails
