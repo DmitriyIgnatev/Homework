@@ -1,7 +1,7 @@
 from .forms import FeedbackForm
 from django.test import Client, TestCase
 from django.urls import reverse
-from catalog.models import Item
+from .models import FeedbackModel
 
 
 class FormTest(TestCase):
@@ -19,7 +19,7 @@ class FormTest(TestCase):
         self.assertEqual(new_help_text, 'Поле для обратной связи')
 
     def test_create_task(self):
-        item_count = Item.objects.count()
+        feedback_count = FeedbackModel.objects.count()
         form_data = {
             'text': 'Тест',
             'email': 'Duck123321@yandex.ru'
@@ -33,5 +33,5 @@ class FormTest(TestCase):
             follow=True)
 
         self.assertRedirects(response, reverse('feedback:feedback'))
-        self.assertEqual(Item.objects.count(), item_count)
+        self.assertEqual(FeedbackModel.objects.count(), feedback_count + 1)
         self.assertTrue(form.is_valid())
