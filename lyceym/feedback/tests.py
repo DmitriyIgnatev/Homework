@@ -1,6 +1,7 @@
-from .forms import FeedbackForm
 from django.test import Client, TestCase
 from django.urls import reverse
+
+from .forms import FeedbackForm
 
 from .models import FeedbackModel
 
