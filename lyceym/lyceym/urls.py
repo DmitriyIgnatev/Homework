@@ -24,7 +24,9 @@ urlpatterns = [
     path('catalog/', include('catalog.urls')),
     path('', include('about.urls')),
     path('tinymce/', include('tinymce.urls')),
-    path('feedback', include('feedback.urls'))
+    path('feedback', include('feedback.urls')),
+    path('auth/', include('users.urls')),
+    path('auth/', include('django.contrib.auth.urls'))
 ]
 
 if settings.DEBUG:

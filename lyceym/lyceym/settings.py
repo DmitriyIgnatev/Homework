@@ -36,6 +36,10 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
+LOGIN_URL = 'auth/login/'
+LOGIN_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'users.CustomUser'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,7 +57,8 @@ INSTALLED_APPS = [
     'django_cleanup',
     'tinymce',
     'debug_toolbar',
-    'feedback.apps.FeedbackConfig'
+    'feedback.apps.FeedbackConfig',
+    'users'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section>
+    <div class='container'>
+        <h2>
+            Регистрация
+        </h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Зарегестрироваться" class="btn btn-success">
+        </form>
+        {% if messages %}
+               {% for message in messages %}
+                  <p class="feedback">{{ message }}</p>
+               {% endfor %}
+            {% endif %}
+    </div>
+</section>
+{% endblock content %}

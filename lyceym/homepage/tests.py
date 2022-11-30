@@ -28,7 +28,7 @@ class TaskPagesTest(TestCase):
 
     def test_homepage_show_correct_context(self):
         responce = Client().get(reverse('homepage:homepage'))
-        self.assertEqual(len(responce.context), 5)
+        self.assertEqual(len(responce.context), 4)
 
 
 # Проверка на то, что на хомпейдж есть обьект при is_on_main=False

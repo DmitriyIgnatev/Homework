@@ -4,6 +4,11 @@
       <div class="container-fluid">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"></button>
          <img src="{% static "img/1.png" %}" alt="Если вы это читаете, то видимо что-то пошло не так" width="50" height="40" class='startimg'>
+         {% if user.is_authenticated %}
+            <a href='/auth/profile/' class='name'>Привет, {{ user.username }} </a>
+         {% else %}
+            <a href="/auth/login/" class='name'>Войти</a>
+         {% endif %}
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                <li class="nav-item">
@@ -20,6 +25,7 @@
                   <a class="nav-link {% if view_name == "feedback" %} active {% endif %}" href={% url "feedback:feedback"%}>Связаться</a>
                </li>
                   {% endwith %}
+               
             </ul>
          </div>
       </div>

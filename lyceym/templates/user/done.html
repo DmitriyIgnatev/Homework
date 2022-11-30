@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section>
+    <div class='container'>
+        <form method="post">
+            {% csrf_token %}
+            <p>Если вы это читаете, то вы успешно восстановили пароль</p>
+        </form>
+    </div>
+</section>
+{% endblock content %}

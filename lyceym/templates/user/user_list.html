@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+{% block content %}
+<section>
+    <div class='container'>    
+        {% if user.is_staff or user.is_superuser %}
+        <h1>Список пользователей</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Почта</th>
+                    <th scope="col">День рождение</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>
+                                <a class='users' href="/auth/user_detail/{{user.id}}">{{user.first_name}}</a>
+                            </td>
+                            <td>
+                                {{ user.second_name }}
+                            </td>
+                            <td>
+                                {{ user.email }}
+                            </td>
+                            <td>
+                                {{ user.birthday }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+            </table>
+            </div>
+        </section>
+    {% else %}
+            <p>Вы не <b>staff</b>, чтоб просматривать пользователей</p>
+
+    {% endif %}        
+    </div>
+</section>
+{% endblock content %}
