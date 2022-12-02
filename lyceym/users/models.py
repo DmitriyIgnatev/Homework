@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
     objects = UserManager()
 
     username = models.CharField(
-        unique=True,
+        unique=False,
         max_length=150,
         error_messages={
             'unique': "Пользователь с таким ником уже есть"},)
@@ -34,6 +34,7 @@ class CustomUser(AbstractUser):
         blank=True)
     birthday = models.DateField(
         'день рождения',
+        blank=True,
         null=True)
 
     USERNAME_FIELD = 'email'

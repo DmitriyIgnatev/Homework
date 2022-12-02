@@ -3,6 +3,7 @@ from django.contrib.auth.views import PasswordChangeDoneView, PasswordResetView
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.views import PasswordResetCompleteView
 from django.urls import path
+
 from .views import registrations, profile, users_list, user_detail
 
 

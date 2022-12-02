@@ -9,6 +9,10 @@
          {% else %}
             <a href="/auth/login/" class='name'>Войти</a>
          {% endif %}
+
+         {% if user.is_staff %}
+            <a class="name_two" href='/auth/user_list/'>Список пользователей</a>
+         {% endif %}
          <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                <li class="nav-item">

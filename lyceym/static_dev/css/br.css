@@ -62,6 +62,12 @@ button.button7 {
     position: absolute;
 }
 
+a.name_two{
+  margin-left: 250px;
+  position: absolute;
+  color:black;
+}
+
 a.button8 {
     font-weight: 700;
     color: white;
